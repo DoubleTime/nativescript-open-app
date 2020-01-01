@@ -1,7 +1,7 @@
 "use strict";
 var utils = require("utils/utils");
 
-function openApp(appID, storeFallback, appleStoreId) {
+function openApp(appID, storeFallback, appleStoreId, queries) {
     if (storeFallback === void 0) { storeFallback = true; }
     var context = utils.ad.getApplicationContext();
     var Intent = android.content.Intent;
@@ -9,6 +9,9 @@ function openApp(appID, storeFallback, appleStoreId) {
     if (intent) {
         // Open app
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        for(var x in queries){
+            intent.putExtra(queries[x]['key'], queries[x]['value']);
+        }
         context.startActivity(intent);
         return true;
     }
