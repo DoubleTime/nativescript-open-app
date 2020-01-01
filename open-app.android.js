@@ -10,6 +10,8 @@ function openApp(appID, storeFallback, appleStoreId, queries) {
         // Open app
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         for(var x in queries){
+            console.log(queries[x]['key']);
+            console.log(queries[x]['value']);
             intent.putExtra(queries[x]['key'], queries[x]['value']);
         }
         context.startActivity(intent);
