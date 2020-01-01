@@ -1,12 +1,18 @@
 "use strict";
 var utils = require("utils/utils");
 
-function openApp(appID, storeFallback, appleStoreId) {
+function openApp(appID, storeFallback, appleStoreId, queries) {
     if (storeFallback === void 0) { storeFallback = true; }
     var sharedApplication = UIApplication.sharedApplication;
     var url = NSURL.URLWithString(appID.trim());
     if (sharedApplication.canOpenURL(url)) {
         // open app
+        var query = "?";
+        for(var x in queries){
+            query += queries[x]['key']+"="+queries[x]['value']+"&";
+        }
+        url = url+query;
+        console.log(url);
         sharedApplication.openURL(url);
         return true;
     }
