@@ -6,13 +6,17 @@ function openApp(appID, storeFallback, appleStoreId, queries) {
     var sharedApplication = UIApplication.sharedApplication;
     var url = NSURL.URLWithString(appID.trim());
     if (sharedApplication.canOpenURL(url)) {
-        // open app
-        var query = "?";
-        for(var x in queries){
-            query += queries[x]['key']+"="+queries[x]['value']+"&";
+        //Append Query
+        var query = "";
+        if(queries != null && queries.length > 0){
+            query = "?";
+            for(var x in queries){
+                query += queries[x]['key']+"="+queries[x]['value'];
+                if(parseInt(x+1)!=queries.length) query += "&";
+            }
         }
-        url = url+query;
-        console.log(url);
+        url = NSURL.URLWithString(url+query);
+        // open app
         sharedApplication.openURL(url);
         return true;
     }
