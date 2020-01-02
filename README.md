@@ -10,6 +10,12 @@ tns plugin add nativescript-open-app
 ```
 
 ## Usage
+### Add Queries
+```
+var queries = [{"key":"fruit","value":"orange"}];  
+openApp("xxx", true,null,queries);  
+```
+
 ### Android
 To open an app, you need its id (for example "com.facebook.katana" for Facebook and "com.twitter.android" for Twitter). 
 You can easily find it in app's URL on https://play.google.com.
